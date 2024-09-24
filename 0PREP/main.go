@@ -1,18 +1,30 @@
 package main
+
 import (
 	"fmt"
 	"net/http"
 )
 
-func main() {
-	http.HandleFunc("/greet",    func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprint(w, "Hello World!")
-	})
 
+type Customer struct {
+	Name string
+	City string
+	Zipcode string
+}
+
+func main() {
+	// define route /greet with an anonymous func
+	http.HandleFunc("/greet", greet)
+
+	// starting webserver
 	http.ListenAndServe("localhost:8000", nil)
 
 }
 
+// take anonymous func aut, and declare separate func greet
+func greet(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprint(w, "Hello World!")
+}
 
 // TERMINAL_1:
 // go build main.go -o m
