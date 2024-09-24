@@ -1,11 +1,11 @@
-package main
+// package main
 
-import "github.com/ntrajic/Building-Microservices-API-in-Go/1PREP_MODULES/app"
+// import "github.com/ntrajic/Building-Microservices-API-in-Go/1PREP_MODULES/app"
 
-func main() {
+// func main() {
 
-	app.Start()
-}
+// 	app.Start()
+// }
 
 
 // in directory 1PREP_MODULES, run:
