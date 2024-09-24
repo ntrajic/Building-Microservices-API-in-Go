@@ -1,15 +1,16 @@
 package main
 
 import (
-	"encoding/json"
+	//"encoding/json"
+	"encoding/xml"
 	"fmt"
 	"net/http"
 )
 
 type Customer struct {
-	Name    string	`json:"full_name"`
-	City    string	`json:"city"`
-	Zipcode string	`json:"zip_code"`
+	Name    string	`json:"full_name" xml:"name"` 
+	City    string	`json:"city" xml:"city"`
+	Zipcode string	`json:"zip_code" xml:"zipcode"`
 }
 
 func main() {
@@ -32,8 +33,10 @@ func getAllCustomers(w http.ResponseWriter, r *http.Request) {
 		{"Bob", "NYC", "110075"},
 		{"Rob", "Van", "v6c c6c"},
 	}
-	w.Header().Add("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(customers)
+	//w.Header().Add("Content-Type", "application/json")
+	//json.NewEncoder(w).Encode(customers)
+	w.Header().Add("Content-Type", "application/xml")
+	xml.NewEncoder(w).Encode(customers)
 }
 
 // TERMINAL_1:
@@ -59,3 +62,13 @@ func getAllCustomers(w http.ResponseWriter, r *http.Request) {
 // TERMINAL_2:
 //@ntrajic ➜ /workspaces/Building-Microservices-API-in-Go (main) $ curl http://localhost:8000/customers
 // [{"full_name":"Bob","city":"NYC","zip_code":"110075"},{"full_name":"Rob","city":"Van","zip_code":"v6c c6c"}]
+
+
+//XML MARSHALING
+//TERMINAL_1: 
+//go run main.go //start web server
+//
+//TERMINAL_2:
+//@ntrajic ➜ /workspaces/Building-Microservices-API-in-Go (main) $ curl http://localhost:8000/customers
+//OUT:
+//<Customer><name>Bob</name><city>NYC</city><zipcode>110075</zipcode></Customer><Customer><name>Rob</name><city>Van</city><zipcode>v6c c6c</zipcode></Customer>
