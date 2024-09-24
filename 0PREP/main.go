@@ -1,7 +1,7 @@
 package main
 
 import (
-	//"encoding/json"
+	"encoding/json"
 	"encoding/xml"
 	"fmt"
 	"net/http"
@@ -33,10 +33,14 @@ func getAllCustomers(w http.ResponseWriter, r *http.Request) {
 		{"Bob", "NYC", "110075"},
 		{"Rob", "Van", "v6c c6c"},
 	}
-	//w.Header().Add("Content-Type", "application/json")
-	//json.NewEncoder(w).Encode(customers)
-	w.Header().Add("Content-Type", "application/xml")
-	xml.NewEncoder(w).Encode(customers)
+	if r.Header.Get("Content-Type") == "application/xml" {
+		w.Header().Add("Content-Type", "application/xml")
+		xml.NewEncoder(w).Encode(customers)
+	} else {
+		w.Header().Add("Content-Type", "application/json")
+		json.NewEncoder(w).Encode(customers)
+	}
+
 }
 
 // TERMINAL_1:
