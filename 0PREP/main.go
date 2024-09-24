@@ -7,9 +7,9 @@ import (
 )
 
 type Customer struct {
-	Name    string
-	City    string
-	Zipcode string
+	Name    string	`json:"full_name"`
+	City    string	`json:"city"`
+	Zipcode string	`json:"zip_code"`
 }
 
 func main() {
@@ -51,3 +51,11 @@ func getAllCustomers(w http.ResponseWriter, r *http.Request) {
 // @ntrajic ➜ /workspaces/Building-Microservices-API-in-Go (main) $ curl http://localhost:8000/customers
 // OUT:
 // [{"Name":"Bob","City":"NYC","Zipcode":"110075"},{"Name":"Rob","City":"Van","Zipcode":"v6c c6c"}]
+
+// Changing Tags/field_names in the response - directly in the structure: new tags are "full_name", "city", "zip_code"
+// TERMINAL_1:
+// go run main.go     // start the server
+//
+// TERMINAL_2:
+//@ntrajic ➜ /workspaces/Building-Microservices-API-in-Go (main) $ curl http://localhost:8000/customers
+// [{"full_name":"Bob","city":"NYC","zip_code":"110075"},{"full_name":"Rob","city":"Van","zip_code":"v6c c6c"}]
