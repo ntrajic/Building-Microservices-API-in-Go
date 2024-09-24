@@ -1,6 +1,6 @@
 package main
 
-import "github.com/ntrajic/ntrajic/Building-Microservices-API-in-Go/1PREP_MODULES/app"
+import "github.com/ntrajic/Building-Microservices-API-in-Go/1PREP_MODULES/app"
 
 func main() {
 
